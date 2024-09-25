@@ -1,0 +1,12 @@
+.item {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #191a15;
+  text-decoration: none;
+}
+
+.item a {
+    color: #191a15;
+    text-decoration: none;
+  }
