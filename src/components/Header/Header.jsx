@@ -5,7 +5,7 @@ import css from "./Header.module.css";
 export default function Header() {
   return (
     <>
-      <img src="/public/logo.png" alt="logo" />
+      <img src="/src/assets/logo.png" alt="logo" />
       <Pagenav></Pagenav>
       <Auth></Auth>
     </>

@@ -12,7 +12,7 @@ export default function Home() {
         We help you to reveal your potential, overcome challenges and find a
         guide in your own life with the help of our experienced psychologists.
       </h3>
-      <img src="/public/heroImage.png" alt="hero-image"/>
+      <img src="/src/assets/heroImage.png" alt="hero-image"/>
       <Button>Get started</Button>
     </>
   );
