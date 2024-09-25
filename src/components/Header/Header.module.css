@@ -1,0 +1,16 @@
+.wrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+}
+
+
+.logo{
+    text-decoration: none;
+    color: #191a15;
+  }
+
+
+  .accent{
+    color: #fc832c ;
+  }

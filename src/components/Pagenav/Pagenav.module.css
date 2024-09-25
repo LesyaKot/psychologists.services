@@ -1,21 +1,36 @@
 .default {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.2;
-    color: #191A15;
-    text-decoration: none;
-  }
-  
-  .active {
-    position: relative;
-  }
-  
-  .active::after {
-    content: " ";
-    position: absolute;
-    left: 0;
-    bottom: -28px;
-    width: 100%;
-    height: 5px;
-    background-color: #FC832C;
-  }
+  font-size: 20px;
+  line-height: 1.2;
+  color: #191a15;
+  text-decoration: none;
+}
+
+.active {
+  position: relative;
+}
+
+.active::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 5px;
+  background-color: #fc832c;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  margin-left: 130px;
+}
+
+.logo{
+  text-decoration: none;
+  color: #191a15;
+}
+.accent{
+  color: #fc832c ;
+}
