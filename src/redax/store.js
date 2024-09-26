@@ -11,7 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { psychologistsReducer } from "./psychologists/slice";
-
+import { authReducer } from "./auth/slice";
 
 const psychologistsPersistConfig = {
   key: "psychologists",
@@ -20,14 +20,16 @@ const psychologistsPersistConfig = {
 };
 
 const persistedPsychologistsReducer = persistReducer(
-    psychologistsPersistConfig,
-    psychologistsReducer
+  psychologistsPersistConfig,
+  psychologistsReducer
 );
+
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
     psychologists: persistedPsychologistsReducer,
-    
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
