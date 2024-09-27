@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { register, logIn, logOut, refreshUser } from "./operations";
-import { register, login, logout, refreshUser } from './firebase/auth';
+import { register, login, logout, refreshUser } from '../../firebase/authOperations';
 import { setAuthHeader, clearAuthHeader } from "./api"; 
 
 
