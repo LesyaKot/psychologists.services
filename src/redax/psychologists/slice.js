@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPsychologists, fetchPsychologistsById } from "./operations";
+import { fetchPsychologists, fetchPsychologistsById } from "../psychologists/operations";
+
 
 const handlePending = (state) => {
   state.isLoading = true;

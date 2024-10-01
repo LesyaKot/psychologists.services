@@ -24,8 +24,6 @@ const persistedPsychologistsReducer = persistReducer(
   psychologistsReducer
 );
 
-const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
-
 export const store = configureStore({
   reducer: {
     psychologists: persistedPsychologistsReducer,

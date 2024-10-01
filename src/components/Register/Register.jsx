@@ -122,7 +122,7 @@ export default function Register() {
                   onClick={togglePasswordVisibility}
                 >
                   <use
-                    xlinkHref={`${sprite}#${showPassword ? "icon-eye" : "icon-eye-off"}`}
+                    xlinkHref={`${showPassword ? "icon-eye" : "icon-eye-off"}`}
                   />
                 </svg>
               </div>
@@ -146,7 +146,7 @@ export default function Register() {
                   onClick={toggleConfirmPasswordVisibility}
                 >
                   <use
-                    xlinkHref={`${sprite}#${showConfirmPassword ? "icon-eye" : "icon-eye-off"}`}
+                    xlinkHref={`${showConfirmPassword ? "icon-eye" : "icon-eye-off"}`}
                   />
                 </svg>
               </div>

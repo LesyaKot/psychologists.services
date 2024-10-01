@@ -7,8 +7,8 @@ import * as Yup from "yup";
 import toast from "react-hot-toast";
 import eyeIcon from "../../assets/eye.svg";
 import eyeOffIcon from "../../assets/eye-off.svg";
-import { login, refreshUser } from "../../redux/auth/operations.js";
-import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
+import { login, refreshUser } from "../../redax/auth/operations.js";
+import { selectIsLoggedIn } from "../../redax/auth/selectors.js";
 import css from "./Login.module.css";
 
 export default function Login() {
@@ -98,7 +98,8 @@ export default function Login() {
             </div>
             <div className={css.inputContainer}>
               <label className={css.formLabel}>Password</label>
-              {/* <div className={css.inputWrapper}>
+
+              <div className={css.inputWrapper}>
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
@@ -106,35 +107,13 @@ export default function Login() {
                   {...register("password")}
                   onBlur={() => trigger("password")}
                 />
-                <svg
-                  width="20"
-                  height="20"
+                <img
+                  src={showPassword ? eyeIcon : eyeOffIcon}
+                  alt={showPassword ? "Hide password" : "Show password"}
                   className={css.togglePassword}
                   onClick={togglePasswordVisibility}
-                >
-                  <use
-                    xlinkHref={`${sprite}#${
-                      showPassword ? "icon-eye" : "icon-eye-off"
-                    }`}
-                  />
-                </svg>
-              </div> */}
-
-<div className={css.inputWrapper}>
-  <input
-    type={showPassword ? "text" : "password"}
-    placeholder="Enter your password"
-    className={getInputClass("password")}
-    {...register("password")}
-    onBlur={() => trigger("password")}
-  />
-  <img
-    src={showPassword ? eyeIcon : eyeOffIcon}
-    alt={showPassword ? "Hide password" : "Show password"}
-    className={css.togglePassword}
-    onClick={togglePasswordVisibility}
-  />
-</div>
+                />
+              </div>
 
               {errors.password && (
                 <p className={css.errorText}>{errors.password.message}</p>

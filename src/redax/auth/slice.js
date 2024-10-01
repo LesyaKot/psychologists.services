@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, login, logout, refreshUser } from '../../firebase/authOperations';
-import { setAuthHeader, clearAuthHeader } from "./api"; 
-
-
+// import { register, login, logout, refreshUser } from '../../firebase/authOperations';
+import { register, login, logout, refreshUser } from '../auth/operations';
 const initialState = {
   user: { name: null, email: null },
   token: null,
@@ -16,22 +14,20 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
+        console.log("Register fulfilled action payload:", action.payload);
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        setAuthHeader(action.payload.token); 
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        setAuthHeader(action.payload.token); 
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
-        clearAuthHeader(); 
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
