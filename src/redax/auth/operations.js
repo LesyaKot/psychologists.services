@@ -55,14 +55,14 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    return new Promise((resolve, reject) => {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          resolve({ name: user.displayName, email: user.email });
-        } else {
-          reject("User not logged in");
-        }
-      });
-    });
+    const user = auth.currentUser;
+    if (user) {
+      const token = await user.getIdToken();
+      console.log("User is logged in:", user); 
+      return { name: user.displayName, email: user.email, token };
+    } else {
+      console.log("No user is logged in"); 
+      return thunkAPI.rejectWithValue("User not logged in");
+    }
   }
 );

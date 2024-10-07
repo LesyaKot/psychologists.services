@@ -1,0 +1,37 @@
+.wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .nameWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .firstLetter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.33;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    color: var(--main-button-color);
+    background-color: var(--main-badges-color);
+  }
+  
+  .name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .text{
+    align-items: start;
+    text-align: start;
+  }

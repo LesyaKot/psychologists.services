@@ -1,0 +1,14 @@
+.starIcon {
+    fill: var(--main-rating-color);
+  }
+  
+  .starIconGrey {
+    fill: var(--main-badges-color);
+  }
+  
+  .starsWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }

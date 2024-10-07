@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
-import { register } from "../../redax/auth/operations";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"; 
 import css from "./Register.module.css";
 
 export default function Register() {
-  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate(); 
 
+  
   const validationSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, "Name must be at least 2 characters")
@@ -32,6 +32,7 @@ export default function Register() {
       .required("Confirm Password is required"),
   });
 
+  
   const {
     register,
     handleSubmit,
@@ -43,18 +44,24 @@ export default function Register() {
   });
 
   const onSubmit = async (data) => {
-    const { confirmPassword, ...submitData } = data;
+    const { confirmPassword, ...submitData } = data; 
     const { name, email, password } = submitData;
 
-    dispatch(register({ name, email, password }))
-      .unwrap()
-      .then(() => {
-        reset();
-        toast.success("Welcome to Psychologists.services!");
-      })
-      .catch(() => {
-        toast.error("Registration failed");
-      });
+    try {
+      const auth = getAuth();     
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+        await updateProfile(user, { displayName: name });
+
+      reset();
+      toast.success("Welcome to Psychologists.services!");
+      
+      navigate("/psychologists");
+    } catch (error) {
+      console.error("Error during registration:", error);
+      toast.error("Registration failed: " + error.message);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -79,18 +86,20 @@ export default function Register() {
 
   return (
     <div>
-      <div className={css.wrap}> 
+      <div className={css.wrap}>
         <div className={css.formSection}>
           <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
             <h2 className={css.formTitle}>Registration</h2>
+
             <div className={css.inputWrap}>
               <label className={css.inputLabel}>Name</label>
               <input
-                type="text" 
+                type="text"
                 placeholder="Enter your name"
                 {...register("name")}
                 className={`${css.input} ${errors.name ? css.errorInput : ""}`}
               />
+              {errors.name && <p className={css.errorText}>{errors.name.message}</p>}
             </div>
 
             <div className={css.inputWrap}>
@@ -101,9 +110,7 @@ export default function Register() {
                 {...register("email")}
                 className={`${css.input} ${errors.email ? css.errorInput : ""}`}
               />
-              {errors.email && (
-                <p className={css.errorText}>{errors.email.message}</p>
-              )}
+              {errors.email && <p className={css.errorText}>{errors.email.message}</p>}
             </div>
 
             <div className={css.inputWrap}>
@@ -121,15 +128,12 @@ export default function Register() {
                   className={css.togglePassword}
                   onClick={togglePasswordVisibility}
                 >
-                  <use
-                    xlinkHref={`${showPassword ? "icon-eye" : "icon-eye-off"}`}
-                  />
+                  <use xlinkHref={`${showPassword ? "icon-eye" : "icon-eye-off"}`} />
                 </svg>
               </div>
-              {errors.password && (
-                <p className={css.errorText}>{errors.password.message}</p>
-              )}
+              {errors.password && <p className={css.errorText}>{errors.password.message}</p>}
             </div>
+
             <div className={css.inputWrap}>
               <label className={css.inputLabel}>Confirm Password</label>
               <div className={css.inputWrapper}>
@@ -145,17 +149,14 @@ export default function Register() {
                   className={css.togglePassword}
                   onClick={toggleConfirmPasswordVisibility}
                 >
-                  <use
-                    xlinkHref={`${showConfirmPassword ? "icon-eye" : "icon-eye-off"}`}
-                  />
+                  <use xlinkHref={`${showConfirmPassword ? "icon-eye" : "icon-eye-off"}`} />
                 </svg>
               </div>
               {errors.confirmPassword && (
-                <p className={css.errorText}>
-                  {errors.confirmPassword.message}
-                </p>
+                <p className={css.errorText}>{errors.confirmPassword.message}</p>
               )}
             </div>
+
             <button
               disabled={!isDirty || !isValid}
               className={css.submitButton}
@@ -163,8 +164,9 @@ export default function Register() {
             >
               Registration
             </button>
+
             <div className={css.signInPrompt}>
-              <p>Already have an account? </p>
+              <p>Already have an account?</p>
               <Link className={css.signInLink} to="/login">
                 Log In
               </Link>

@@ -5,6 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redax/store.js";
 import App from "./App.jsx";
+import 'modern-normalize';
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(

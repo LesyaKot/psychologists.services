@@ -1,76 +1,29 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { lazy, useEffect } from "react";
-import RestrictedRoute from "./RestrictedRoute.jsx";
-import PrivateRoute from "./PrivateRoute.jsx";
-import SharedLayout from "./components/SharedLayout/SharedLayout.jsx";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "../src/pages/Home/Home";
+import RegisterPage from "../src/pages/RegisterPage/RegisterPage";
+import LoginPage from "../src/pages/LoginPage/LoginPage";
+import Psychologists from "../src/pages/Psychologists/Psychologists";
+import Favorites from "../src/pages/Favorites/Favorites";
+import NotFoundPage from "../src/pages/NotFoundPage/NotFoundPage";
+import PrivateRoute from "./PrivateRoute";
 
-import { useDispatch, useSelector } from "react-redux";
-// import { refreshUser } from '../src/firebase/authOperations.js';
-
-import Loader from "../src/components/Loader/Loader.jsx";
-import "./App.css";
-
-const Home = lazy(() => import("../src/pages/Home/Home.jsx"));
-const NotFoundPage = lazy(() =>
-  import("../src/pages/NotFoundPage/NotFoundPage.jsx")
-);
-const Psychologists = lazy(() =>
-  import("../src/pages/Psychologists/Psychologists.jsx")
-);
-const Favorites = lazy(() => import("../src/pages/Favorites/Favorites.jsx"));
-const RegisterPage = lazy(() =>
-  import("./pages/RegisterPage/RegisterPage.jsx")
-);
-const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
-
-function App() {
+export default function AppRoutes() {
   return (
-    // <>
-    //   <Home></Home>
-    // </>
-
-    <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/register"
-                component={<RegisterPage />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute redirectTo="/login" component={<LoginPage />} />
-            }
-          />
-          {/* <Route
-          path="/"
-          element={<PrivateRoute redirectTo="/psychologists" component={<Psychologists />} />}
-        /> */}
-          {/* <Route path="/psychologists" element={<Psychologists />}>
-          <Route path="favorites" element={<Favorites />} />          
-        </Route> */}
-
-          <Route
-            path="/psychologists"
-            element={
-              <PrivateRoute redirectTo="/login" component={<Psychologists />} />
-            }
-          >
-            <Route path="favorites" element={<Favorites />} />
-          </Route>
-
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/psychologists"
+        element={
+          <PrivateRoute redirectTo="/login">
+            <Psychologists />
+          </PrivateRoute>
+        }
+      >
+        <Route path="favorites" element={<Favorites />} />
+      </Route>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
-
-export default App;

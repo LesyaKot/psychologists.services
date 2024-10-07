@@ -1,27 +1,17 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import eyeIcon from "../../assets/eye.svg";
 import eyeOffIcon from "../../assets/eye-off.svg";
-import { login, refreshUser } from "../../redax/auth/operations.js";
-import { selectIsLoggedIn } from "../../redax/auth/selectors.js";
+import { useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import css from "./Login.module.css";
 
-export default function Login() {
-  const dispatch = useDispatch();
+export default function LoginPage() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(refreshUser());
-    }
-  }, [isLoggedIn, dispatch]);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -30,7 +20,6 @@ export default function Login() {
         "Invalid email format"
       )
       .required("Email is required"),
-
     password: Yup.string()
       .required("Password is required")
       .min(8, "Password must be at least 8 characters long"),
@@ -48,33 +37,26 @@ export default function Login() {
   });
 
   const onSubmit = async (data) => {
-    dispatch(login(data))
-      .unwrap()
-      .then(() => {
-        reset();
-        toast.success("Successfully logged in a user!");
-      })
-      .catch(() => {
-        toast.error("Login failed");
-      });
+    const { email, password } = data;
+    const auth = getAuth();
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Successfully logged in!");
+      reset();
+      navigate("/psychologists");
+    } catch (error) {
+      console.error("Error during login:", error);
+      toast.error(`Login failed: ${error.message}`);
+    }
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  useEffect(() => {
-    if (errors.email) {
-      toast.error("Invalid email format - test@example.com");
-    }
-
-    if (errors.password) {
-      toast.error("Password must be at least 8 characters long");
-    }
-  }, [errors.email, errors.password]);
-
   const getInputClass = (fieldName) => {
-    return errors[fieldName] ? css.error : "";
+    return errors[fieldName] ? `${css.input} ${css.error}` : css.input;
   };
 
   return (
@@ -83,6 +65,7 @@ export default function Login() {
         <div className={css.formSection}>
           <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
             <h2 className={css.formTitle}>Log in</h2>
+
             <div className={css.inputContainer}>
               <label className={css.formLabel}>Email</label>
               <input
@@ -96,6 +79,7 @@ export default function Login() {
                 <p className={css.errorText}>{errors.email.message}</p>
               )}
             </div>
+
             <div className={css.inputContainer}>
               <label className={css.formLabel}>Password</label>
 
@@ -106,6 +90,7 @@ export default function Login() {
                   className={getInputClass("password")}
                   {...register("password")}
                   onBlur={() => trigger("password")}
+                  autoComplete="current-password"
                 />
                 <img
                   src={showPassword ? eyeIcon : eyeOffIcon}
@@ -119,6 +104,7 @@ export default function Login() {
                 <p className={css.errorText}>{errors.password.message}</p>
               )}
             </div>
+
             <button
               disabled={!isDirty || !isValid}
               className={css.btnform}
@@ -126,8 +112,9 @@ export default function Login() {
             >
               Log in
             </button>
+
             <div>
-              <p>Don’t have an account? </p>
+              <p>Don’t have an account?</p>
               <Link className={css.link} to="/register">
                 Register
               </Link>
