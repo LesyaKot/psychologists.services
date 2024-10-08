@@ -10,7 +10,7 @@ export default function Pagenav() {
   return (
     <ul className={css.list}>
       <li className={css.item}>
-        <NavLink to="/home" className={getNavLinkCl}>
+        <NavLink to="/" className={getNavLinkCl}>
           Home
         </NavLink>
       </li>

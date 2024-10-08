@@ -1,13 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
 import { SuitHeart, StarFill } from "react-bootstrap-icons";
-import { chooseFavorite } from "../../redax/psychologists/slice.js";
-import { selectPsychologists } from "../../redax/psychologists/selectors.js";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+// import Reviews from '../../components/Reviews/Reviews';
 import css from "./PsychologistsCard.module.css";
-
-export default function PsychologistsCard({ psychologist }) {
-  const dispatch = useDispatch();
-  const { favorites } = useSelector(selectPsychologists);
-  const isFavorite = favorites.some((item) => item.id === psychologist.id);
+export default function PsychologistsCard({ psychologist, onFavoriteToggle }) {
+  const[isFavorite, setIsFavorite] = useState(false);
+  const navigate = useNavigate(); 
 
   const {
     id,
@@ -24,9 +22,15 @@ export default function PsychologistsCard({ psychologist }) {
   } = psychologist;
 
   const handleClick = () => {
-    dispatch(chooseFavorite(psychologist.id));
+    setIsFavorite((prev) => !prev);
+    if(onFavoriteToggle){
+      onFavoriteToggle(id);
+    };  
   };
-  console.log("psychologist:", psychologist);
+ 
+  const handleReadMore = () => {
+    navigate(`/psychologist/${id}`); 
+  };
 
   return (
     <div className={css.wrap}>
@@ -66,6 +70,7 @@ export default function PsychologistsCard({ psychologist }) {
       <button variant="small" to={`/psychologist/${id}`}>
         Read more
       </button>
+      {/* <Reviews /> */}
     </div>
   );
 }
