@@ -2,7 +2,7 @@ import RatingStars from "../RatingStars/RatingStars.jsx";
 import css from "./ReviewItem.module.css";
 
 export default function ReviewItem({
-  review: { comment, reviewer_name, reviewer_rating },
+  review: { comment = "", reviewer_name = "Anonymous", reviewer_rating = 0 } = {},
 }) {
   return (
     <>

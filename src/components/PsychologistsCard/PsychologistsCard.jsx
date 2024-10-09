@@ -1,7 +1,7 @@
 import { SuitHeart, StarFill } from "react-bootstrap-icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import Reviews from '../../components/Reviews/Reviews';
+import Reviews from '../../components/Reviews/Reviews';
 import css from "./PsychologistsCard.module.css";
 export default function PsychologistsCard({ psychologist, onFavoriteToggle }) {
   const[isFavorite, setIsFavorite] = useState(false);
@@ -70,7 +70,7 @@ export default function PsychologistsCard({ psychologist, onFavoriteToggle }) {
       <button variant="small" to={`/psychologist/${id}`}>
         Read more
       </button>
-      {/* <Reviews /> */}
+      {reviews && reviews.length > 0 ? <Reviews reviews={reviews} /> : <p>No reviews yet.</p>}
     </div>
   );
 }

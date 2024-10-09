@@ -1,12 +1,12 @@
 import { nanoid } from "nanoid";
-import { useSelector } from "react-redux";
-import { selectPsychologists } from "../../redax/psychologists/selectors.js";
+import { useState, useEffect } from "react";
 import ReviewItem from '../ReviewItem/ReviewItem.jsx';
 import css from "./Reviews.module.css";
 
-export default function Reviews() {
-  const { currentItem } = useSelector(selectPsychologists);
-  const { reviews } = currentItem;
+
+export default function Reviews({reviews = []}) {
+ 
+  
   return (
     <ul className={css.list}>
       {reviews.map((item) => (
