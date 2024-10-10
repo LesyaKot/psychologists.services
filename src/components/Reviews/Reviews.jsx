@@ -1,12 +1,8 @@
 import { nanoid } from "nanoid";
-import { useState, useEffect } from "react";
-import ReviewItem from '../ReviewItem/ReviewItem.jsx';
+import ReviewItem from "../ReviewItem/ReviewItem.jsx";
 import css from "./Reviews.module.css";
 
-
-export default function Reviews({reviews = []}) {
- 
-  
+export default function Reviews({ reviews = [] }) {
   return (
     <ul className={css.list}>
       {reviews.map((item) => (

@@ -1,9 +1,9 @@
 .starIcon {
-    fill: var(--main-rating-color);
+    fill: yellow;
   }
   
   .starIconGrey {
-    fill: var(--main-badges-color);
+    fill: gray;
   }
   
   .starsWrap {
@@ -11,4 +11,5 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
+   
   }
