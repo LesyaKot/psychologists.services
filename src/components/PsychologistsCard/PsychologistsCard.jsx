@@ -1,11 +1,17 @@
 import { SuitHeart, StarFill } from "react-bootstrap-icons";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Reviews from '../../components/Reviews/Reviews';
+import Reviews from "../../components/Reviews/Reviews";
+import Modal from "../Modal/Modal";
+import Appointment from "../Appointment/Appointment";
 import css from "./PsychologistsCard.module.css";
+
+
 export default function PsychologistsCard({ psychologist, onFavoriteToggle }) {
-  const[isFavorite, setIsFavorite] = useState(false);
-  const navigate = useNavigate(); 
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  
 
   const {
     id,
@@ -23,15 +29,24 @@ export default function PsychologistsCard({ psychologist, onFavoriteToggle }) {
 
   const handleClick = () => {
     setIsFavorite((prev) => !prev);
-    if(onFavoriteToggle){
+    if (onFavoriteToggle) {
       onFavoriteToggle(id);
-    };  
-  };
- 
-  const handleReadMore = () => {
-    navigate(`/psychologist/${id}`); 
+    }
   };
 
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const openModal = () => {
+    setModalIsOpen(true);
+    console.log(openModal);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    console.log(closeModal);
+  };
   return (
     <div className={css.wrap}>
       <img
@@ -67,10 +82,23 @@ export default function PsychologistsCard({ psychologist, onFavoriteToggle }) {
         <p>Initial_consultation:{initial_consultation}</p>
         <p className={css.about}>{about}</p>
       </div>
-      <button variant="small" to={`/psychologist/${id}`}>
-        Read more
-      </button>
-      {reviews && reviews.length > 0 ? <Reviews reviews={reviews} /> : <p>No reviews yet.</p>}
+
+      {!isExpanded && <button onClick={toggleReadMore}>Read More</button>}
+      {isExpanded && (
+        <>
+          {reviews && reviews.length > 0 ? (
+            <Reviews reviews={reviews} />
+          ) : (
+            <p>No reviews yet.</p>
+          )}
+
+          <button className={css.appointmentBtn} onClick={openModal}>Make an appointment</button>
+
+          <Modal isOpen={modalIsOpen} onClose={closeModal}>
+          <Appointment psychologist={psychologist} />
+          </Modal>
+        </>
+      )}
     </div>
   );
 }

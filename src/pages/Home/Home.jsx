@@ -12,8 +12,10 @@ export default function Home() {
   };
 
   return (
+    <>
+    <Header />
     <section className={css.wrap}>
-      <Header />
+     
       <div className={css.left}>
         <h1 className={css.title}>The road to the depths of the human soul</h1>
         <h3>
@@ -46,5 +48,7 @@ export default function Home() {
         <ArrowUpRight className={css.user}></ArrowUpRight>
       </MainBtn>
     </section>
+    </>
+    
   );
 }
