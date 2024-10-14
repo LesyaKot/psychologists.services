@@ -8,7 +8,7 @@ import css from "./Psychologists.module.css";
 export default function Psychologists() {
   return (
     <>
-      <Header></Header>     
+      <Header />    
       <PsychologistsList />
       <Toaster position="top-left" containerStyle={{ zIndex: 9999 }} />
     </>

@@ -5,13 +5,10 @@ import Modal from "../Modal/Modal";
 import Appointment from "../Appointment/Appointment";
 import css from "./PsychologistsCard.module.css";
 
-
 export default function PsychologistsCard({ psychologist, onFavoriteToggle }) {
-
   const [isFavorite, setIsFavorite] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
 
   const {
     id,
@@ -92,10 +89,12 @@ export default function PsychologistsCard({ psychologist, onFavoriteToggle }) {
             <p>No reviews yet.</p>
           )}
 
-          <button className={css.appointmentBtn} onClick={openModal}>Make an appointment</button>
+          <button className={css.appointmentBtn} onClick={openModal}>
+            Make an appointment
+          </button>
 
           <Modal isOpen={modalIsOpen} onClose={closeModal}>
-          <Appointment psychologist={psychologist} />
+            <Appointment psychologist={psychologist} />
           </Modal>
         </>
       )}

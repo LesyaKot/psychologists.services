@@ -20,6 +20,11 @@ export default function Pagenav() {
           Psychologists
         </NavLink>
       </li>
+      <li className={css.item}>
+        <NavLink to="/favorites" className={getNavLinkCl}>
+          Favorites
+        </NavLink>
+      </li>
     </ul>
   );
 }
