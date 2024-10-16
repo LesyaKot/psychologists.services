@@ -7,7 +7,7 @@ import FilterForm from "../../components/FilterForm/FilterForm.jsx";
 import css from "./PsychologistsList.module.css";
 
 
-export default function PsychologistsList() {
+export default function PsychologistsList({onFavoriteToggle}) {
   const [psychologists, setPsychologists] = useState([]);
   const [error, setError] = useState(null);
   const [visiblePsychologists, setVisiblePsychologists] = useState(3);
@@ -81,7 +81,7 @@ export default function PsychologistsList() {
         <ul className={css.list}>
           {filteredPsychologists.slice(0, visiblePsychologists).map((psychologist) => (
             <li key={psychologist.name}>
-              <PsychologistsCard psychologist={psychologist} />
+              <PsychologistsCard psychologist={psychologist} onFavoriteToggle={onFavoriteToggle} />
             </li>
           ))}
         </ul>

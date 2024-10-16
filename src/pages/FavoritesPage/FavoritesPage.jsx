@@ -1,13 +1,17 @@
-import { useState } from "react";
 import FilterForm from "../../components/FilterForm/FilterForm";
+import { useState, useEffect } from "react";
 import PsychologistsCard from "../../components/PsychologistsCard/PsychologistsCard";
-import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
-import css from "./Favorites.module.css";
+import css from "./FavoritesPage.module.css";
 
-export default function Favorites({ favoritePsychologists }) {
-  const [visibleFavorites, setvisibleFavorites] = useState(3);
+export default function FavoritesPage() {
+  const [favoritePsychologists, setFavoritePsychologists] = useState([]);
   const [filteredPsychologists, setFilteredPsychologists] = useState([]);
-  const [loadMoreCount, setLoadMoreCount] = useState(3);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavoritePsychologists(storedFavorites);
+    setFilteredPsychologists(storedFavorites);
+  }, []);
 
   const handleFilter = (filter) => {
     let sortedPsychologists = [...favoritePsychologists];
@@ -41,36 +45,24 @@ export default function Favorites({ favoritePsychologists }) {
         break;
     }
     setFilteredPsychologists(sortedPsychologists);
-
-    setvisibleFavorites(Math.min(3, sortedPsychologists.length));
-  };
-
-  const handleLoadMore = () => {
-    const newCount = loadMoreCount + 3;
-    setLoadMoreCount(newCount);
-    setvisibleFavorites(filteredPsychologists.slice(0, newCount));
   };
 
   return (
-    <>
+    <div>
       <FilterForm onFilter={handleFilter} />
-
-      <div>
-        {filteredPsychologists.length === 0 ? (
-          "No favorite psychologists selected yet."
-        ) : (
-          <ul>
-            {filteredPsychologists.slice(0, visibleFavorites).map((psychologist, index) => (
-              <li key={index}>
+      {favoritePsychologists.length === 0 ? (
+        <p>No psychologists available to display.</p>
+      ) : (
+        <div className={css.wrap}>
+          <ul className={css.list}>
+            {filteredPsychologists.map((psychologist) => (
+              <li key={psychologist.name}>
                 <PsychologistsCard psychologist={psychologist} />
               </li>
             ))}
           </ul>
-        )}
-        {visibleFavorites < filteredPsychologists.length && (
-          <LoadMoreBtn onClick={handleLoadMore}>Load More</LoadMoreBtn>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   );
 }
