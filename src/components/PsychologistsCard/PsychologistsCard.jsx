@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { SuitHeart, StarFill } from "react-bootstrap-icons";
+import Reviews from "../../components/Reviews/Reviews";
+import Modal from "../../components/Modal/Modal";
+import Appointment from "../Appointment/Appointment";
 import css from "./PsychologistsCard.module.css";
 
 export default function PsychologistsCard({ psychologist }) {
@@ -17,6 +20,8 @@ export default function PsychologistsCard({ psychologist }) {
   } = psychologist;
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     const favoritePsychologists =
@@ -40,6 +45,19 @@ export default function PsychologistsCard({ psychologist }) {
       localStorage.setItem("favorites", JSON.stringify(favoritePsychologists));
       setIsFavorite(true);
     }
+  };
+  const openModal = () => {
+    setModalIsOpen(true);
+    console.log(openModal);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    console.log(closeModal);
+  };
+
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
   };
 
   return (
@@ -78,6 +96,23 @@ export default function PsychologistsCard({ psychologist }) {
         <p>Initial consultation: {initial_consultation}</p>
         <p className={css.about}>{about}</p>
       </div>
+
+      {!isExpanded && <button onClick={toggleReadMore}>Read More</button>}
+      {isExpanded && (
+        <>
+          {reviews && reviews.length > 0 ? (
+            <Reviews reviews={reviews} />
+          ) : (
+            <p>No reviews yet.</p>
+          )}
+          <button className={css.appointmentBtn} onClick={openModal}>
+            Make an appointment
+          </button>
+          <Modal isOpen={modalIsOpen} onClose={closeModal}>
+            <Appointment psychologist={psychologist} />
+          </Modal>
+        </>
+      )}
     </div>
   );
 }

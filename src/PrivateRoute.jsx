@@ -1,29 +1,21 @@
-import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../src/firebase/firebaseConfig.js"; 
+import toast from "react-hot-toast";
+import { useEffect } from "react";
 
-const PrivateRoute = ({ children, redirectTo }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
-
+export default function PrivateRoute({ user, children }) {
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
-      }
-    });
+    if (!user) {
+      toast.error("Please log in to access this page", {
+        position: "top-center",
+      });
+    }
+  }, [user]);
+  console.log("Inside PrivateRoute, user is:", user);
 
-    return () => unsubscribe();
-  }, []);
-
-  if (isAuthenticated === null) {
-    
-    return <div>Loading...</div>;
+  if (!user) {
+    console.log("No user, redirecting to login");
+    return <Navigate to="/login" />;
   }
 
-  return isAuthenticated ? children : <Navigate to={redirectTo} />;
-};
-
-export default PrivateRoute;
+  return children;
+}
