@@ -31,22 +31,37 @@ export default function Login() {
     resolver: yupResolver(validationSchema),
   });
 
+  // const onSubmit = async (data) => {
+  //   const { email, password } = data;
+  //   const auth = getAuth();
+
+  //   try {
+  //     await signInWithEmailAndPassword(auth, email, password);
+  //     localStorage.setItem("isAuthenticated", "true");
+  //     toast.success("Successfully logged in!");
+  //     reset();
+  //     navigate("/psychologists");
+  //     window.location.reload();
+  //   } catch (error) {
+  //     toast.error(`Login failed: ${error.message}`);
+  //   }
+  // };
   const onSubmit = async (data) => {
     const { email, password } = data;
     const auth = getAuth();
-
+  
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("isAuthenticated", "true");      
+      localStorage.removeItem("favorites");      
       toast.success("Successfully logged in!");
       reset();
       navigate("/psychologists");
-      window.location.reload();
     } catch (error) {
       toast.error(`Login failed: ${error.message}`);
     }
   };
-
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

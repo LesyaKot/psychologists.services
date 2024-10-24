@@ -9,7 +9,7 @@
   position: relative;
 }
 
-.active::after {
+/* .active::after {
   content: " ";
   position: absolute;
   left: 0;
@@ -17,8 +17,20 @@
   width: 100%;
   height: 5px;
   background-color: #fc832c;
+} */
+ 
+.active::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color:  #fc832c;
 }
-
 .list {
   display: flex;
   flex-direction: row;
