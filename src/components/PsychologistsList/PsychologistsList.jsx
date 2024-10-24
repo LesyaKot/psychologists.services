@@ -107,7 +107,7 @@ export default function PsychologistsList() {
     setFavoritePsychologists(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
-
+ 
   if (isLoading) {
     return <Loader />;
   }
@@ -139,3 +139,4 @@ export default function PsychologistsList() {
     </>
   );
 }
+

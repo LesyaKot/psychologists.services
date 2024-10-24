@@ -7,6 +7,8 @@ const getNavLinkCl = ({ isActive }) => {
 };
 
 export default function Pagenav() {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
   return (
     <ul className={css.list}>
       <li className={css.item}>
@@ -20,11 +22,14 @@ export default function Pagenav() {
           Psychologists
         </NavLink>
       </li>
-      <li className={css.item}>
-        <NavLink to="/favorites" className={getNavLinkCl}>
-          Favorites
-        </NavLink>
-      </li>
+
+      {isAuthenticated && (
+        <li className={css.item}>
+          <NavLink to="/favorites" className={getNavLinkCl}>
+            Favorites
+          </NavLink>
+        </li>
+      )}
     </ul>
   );
 }

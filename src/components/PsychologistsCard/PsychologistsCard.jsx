@@ -116,3 +116,4 @@ export default function PsychologistsCard({ psychologist }) {
     </div>
   );
 }
+
