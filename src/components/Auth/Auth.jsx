@@ -28,13 +28,13 @@ export default function Auth({ user, onLogin }) {
     <ul className={css.list}>
       {user ? (
         <>
-          <li>
+          <li className={css.listitem}>
           <Person className={css.personIcon}           
             size={24}
           />
             <p className={css.name}>Hello, {user.displayName || user.email}!</p>
           </li>
-          <li>
+          <li className={css.listitem}>
             <NavLink className={getNavLinkClass} onClick={() => handleSignOut(onLogin, navigate)} >Log out</NavLink>
           </li>
         </>

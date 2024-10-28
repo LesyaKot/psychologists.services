@@ -9,7 +9,6 @@
   align-items: center;
   justify-content: center;
   background-color: #fc832c;
-  transition: background-color var(--animation);
   height: 24px;
   width: 107px;
   border: none;

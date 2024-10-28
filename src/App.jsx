@@ -12,7 +12,7 @@ import { auth } from "./firebase/firebaseConfig";
 import { Toaster } from "react-hot-toast";
 import { onAuthStateChanged } from "firebase/auth";
 import Auth from "./components/Auth/Auth";
-
+import './App.css'; 
 
 export default function AppRoutes() {
   const [user, setUser] = useState(null);
@@ -43,8 +43,12 @@ export default function AppRoutes() {
   return (
     <>
      <Toaster position="top-right" />
-    <Header user={user} onLogin={handleLogin} onRegister={handleRegister} />
-    <Auth user={user} onLogin={handleLogin} onRegister={handleRegister}/> 
+
+     <div className="container">
+     <Header user={user} onLogin={handleLogin} onRegister={handleRegister} />
+     <Auth user={user} onLogin={handleLogin} onRegister={handleRegister}/> 
+     </div>
+    
     
     <Routes>
       <Route path="/" element={<Home user={user}  />} />

@@ -4,7 +4,7 @@
   align-items: center;
   gap: 8px;
   justify-content: end;
-  margin-left: 345px;
+  /* margin-left: 345px; */
 }
 /* 
 .item {
@@ -22,7 +22,6 @@
   border-radius: 30px;
   background-color: #fbfbfb;
   border: 1px solid #191a15;
- 
 }
 
 .default {
@@ -34,23 +33,29 @@
 
 .active {
   position: relative;
-  color:  #fbfbfb;
+  color: #fbfbfb;
   background-color: #fc832c;
   border: none;
 }
 
-.name{
+.name {
   font-family: Inter, sans-serif;
   font-size: 16px;
   font-weight: 500;
   margin: 0;
   margin-right: 20px;
-
 }
 
-.personIcon{
-color:#fff;
-width: 24px;
-border-radius: 4px;
-background-color: #fc832c;
+.personIcon {
+  color: #fff;
+  fill: #fff;
+  width: 28px;
+  border-radius: 4px;
+  background-color: #fc832c;
+}
+
+.listitem {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

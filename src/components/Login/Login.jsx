@@ -31,29 +31,14 @@ export default function Login() {
     resolver: yupResolver(validationSchema),
   });
 
-  // const onSubmit = async (data) => {
-  //   const { email, password } = data;
-  //   const auth = getAuth();
-
-  //   try {
-  //     await signInWithEmailAndPassword(auth, email, password);
-  //     localStorage.setItem("isAuthenticated", "true");
-  //     toast.success("Successfully logged in!");
-  //     reset();
-  //     navigate("/psychologists");
-  //     window.location.reload();
-  //   } catch (error) {
-  //     toast.error(`Login failed: ${error.message}`);
-  //   }
-  // };
   const onSubmit = async (data) => {
     const { email, password } = data;
     const auth = getAuth();
-  
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      localStorage.setItem("isAuthenticated", "true");      
-      localStorage.removeItem("favorites");      
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.removeItem("favorites");
       toast.success("Successfully logged in!");
       reset();
       navigate("/psychologists");
@@ -61,28 +46,33 @@ export default function Login() {
       toast.error(`Login failed: ${error.message}`);
     }
   };
-  
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h2>Log in</h2>
-        <div>
-          <label>Email</label>
-          <input type="email" {...register("email")} />
-          {errors.email && <p>{errors.email.message}</p>}
-        </div>
+    <div className={css.wrap}>
+      <h2 className={css.title}>Log in</h2>
+      <p className={css.text}>
+        Welcome back! Please enter your credentials to access your account and
+        continue your search for a psychologist.
+      </p>
 
-        <div>
-          <label>Password</label>
+      <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+        <label className={css.label}>Email</label>
+        <input className={css.input} type="email" {...register("email")} />
+        {errors.email && <p>{errors.email.message}</p>}
+
+        <div className={css.passwordContainer}>
+          <label className={css.label}>Password</label>
           <input
+            className={css.input}
             type={showPassword ? "text" : "password"}
             {...register("password")}
           />
           <img
+            className={css.eyeIcon}
             src={showPassword ? eyeIcon : eyeOffIcon}
             alt="Toggle visibility"
             onClick={togglePasswordVisibility}
@@ -90,7 +80,9 @@ export default function Login() {
           {errors.password && <p>{errors.password.message}</p>}
         </div>
 
-        <button type="submit">Log in</button>
+        <button className={css.btn} type="submit">
+          Log in
+        </button>
       </form>
     </div>
   );
