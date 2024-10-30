@@ -1,0 +1,50 @@
+.filterDropdown {
+  /* color: #8a8a89; */
+}
+
+.filterWrapper {
+  text-align: left;
+}
+
+.title {
+  font-weight: 14px;
+  color: #8a8a89;
+  margin-bottom: 10px;
+}
+
+.filterBtn {
+  background-color: #fc832c;
+  font-weight: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  width: 226px;
+  height: 48px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chevronIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.filterOption {
+  color: #8a8a89;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.filterOption:hover {
+  color: #000;
+}
+
+.activeFilter {
+  color: black;
+  font-weight: bold;
+}

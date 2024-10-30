@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
 import css from "./FilterForm.module.css";
 
 export default function FilterForm({ psychologists, onFilter }) {
@@ -23,22 +24,27 @@ export default function FilterForm({ psychologists, onFilter }) {
 
   return (
     <div className={css.filterWrapper}>
-      <h2>Filters</h2>
+      <h3 className={css.title}>Filters</h3>
       <button
         className={css.filterBtn}
         onClick={() => setShowDropdown(!showDropdown)}
       >
         {filter}
+        {showDropdown ? (
+          <ChevronUp className={css.chevronIcon} />
+        ) : (
+          <ChevronDown className={css.chevronIcon} />
+        )}
       </button>
       {showDropdown && (
         <ul className={css.filterDropdown}>
-          {filterOptions.map((filter, index) => (
+          {filterOptions.map((filterOption, index) => (
             <li
               key={index}
               className={css.filterOption}
-              onClick={() => handleFilter(filter)}
+              onClick={() => handleFilter(filterOption)}
             >
-              {filter}
+              {filterOption}
             </li>
           ))}
         </ul>
