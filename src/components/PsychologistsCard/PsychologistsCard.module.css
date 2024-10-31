@@ -1,0 +1,44 @@
+.wrap{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 24px;
+    border-radius: 10px;   
+    width: 1180px;
+    margin: 20px auto;
+    padding: 20px;
+    
+}
+.avatar{
+    width: 96px;
+    height: 96px;
+    border-radius: 15px;
+    position: relative;
+}
+.imgWrap {
+    position: relative;
+    border: 1px solid #fc832c;
+    border-radius: 15px;
+    padding: 10px;
+  }
+  
+  .statusIndicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    padding: 5px;
+    z-index: 1;
+  }
+  
+  .online {
+    background-color:#90EE90;    
+  }
+  
+  .offline {
+    background-color: gray;
+  }

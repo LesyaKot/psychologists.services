@@ -23,6 +23,9 @@ export default function PsychologistsCard({ psychologist }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const isOnline = true;
+  const statusClass = isOnline ? css.online : css.offline;
+
   useEffect(() => {
     const favoritePsychologists =
       JSON.parse(localStorage.getItem("favorites")) || [];
@@ -46,14 +49,13 @@ export default function PsychologistsCard({ psychologist }) {
       setIsFavorite(true);
     }
   };
+
   const openModal = () => {
     setModalIsOpen(true);
-    console.log(openModal);
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
-    console.log(closeModal);
   };
 
   const toggleReadMore = () => {
@@ -62,13 +64,17 @@ export default function PsychologistsCard({ psychologist }) {
 
   return (
     <div className={css.wrap}>
-      <img
-        className={css.avatar}
-        src={avatar_url}
-        alt="avatar"
-        width="96px"
-        height="96px"
-      />
+      <div className={css.imgWrap}>
+        <div className={`${css.statusIndicator} ${statusClass}`}></div>
+        <img
+          className={css.avatar}
+          src={avatar_url}
+          alt="avatar"
+          width="96px"
+          height="96px"
+        />
+      </div>
+
       <div>
         <p>Psychologist</p>
         <p className={css.price}>
@@ -116,4 +122,3 @@ export default function PsychologistsCard({ psychologist }) {
     </div>
   );
 }
-
