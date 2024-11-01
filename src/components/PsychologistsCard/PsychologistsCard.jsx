@@ -64,6 +64,8 @@ export default function PsychologistsCard({ psychologist }) {
 
   return (
     <div className={css.wrap}>
+
+      <div className={css.infoWrap}>
       <div className={css.imgWrap}>
         <div className={`${css.statusIndicator} ${statusClass}`}></div>
         <img
@@ -75,7 +77,7 @@ export default function PsychologistsCard({ psychologist }) {
         />
       </div>
 
-      <div>
+      <div className={css.textWrap}>
         <p>Psychologist</p>
         <p className={css.price}>
           Price: {price_per_hour ? price_per_hour.toFixed(2) : "N/A"}
@@ -102,8 +104,9 @@ export default function PsychologistsCard({ psychologist }) {
         <p>Initial consultation: {initial_consultation}</p>
         <p className={css.about}>{about}</p>
       </div>
+      </div>
 
-      {!isExpanded && <button onClick={toggleReadMore}>Read More</button>}
+      {!isExpanded && <button className={css.readMoreBtn} onClick={toggleReadMore}>Read More</button>}
       {isExpanded && (
         <>
           {reviews && reviews.length > 0 ? (

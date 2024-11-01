@@ -1,8 +1,9 @@
 .wrap{
     background-color: #fff;
     display: flex;
-    flex-direction: column;
-    align-items: start;
+    flex-direction:column;
+    /* align-items: start; */
+    text-align: left;
     gap: 24px;
     border-radius: 10px;   
     width: 1180px;
@@ -10,11 +11,20 @@
     padding: 20px;
     
 }
+
+.infoWrap{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    text-align: left;
+}
+
 .avatar{
     width: 96px;
     height: 96px;
     border-radius: 15px;
     position: relative;
+    margin-right: 100px;
 }
 .imgWrap {
     position: relative;
@@ -41,4 +51,29 @@
   
   .offline {
     background-color: gray;
+  }
+
+  .textWrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 32px;
+  }
+
+  .readMoreBtn{
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 14px;
+    padding-left: 0;
+    font-weight: 500;
+    line-height: 24px;
+    text-decoration: underline;
+    transition: all 0.3s linear;
+    &:hover {
+      text-decoration: none;
+      color: grey}
   }
