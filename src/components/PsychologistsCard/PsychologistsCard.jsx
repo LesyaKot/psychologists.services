@@ -63,9 +63,9 @@ export default function PsychologistsCard({ psychologist }) {
   };
 
   return (
+    
     <div className={css.wrap}>
-
-      <div className={css.infoWrap}>
+      
       <div className={css.imgWrap}>
         <div className={`${css.statusIndicator} ${statusClass}`}></div>
         <img
@@ -77,36 +77,51 @@ export default function PsychologistsCard({ psychologist }) {
         />
       </div>
 
-      <div className={css.textWrap}>
-        <p>Psychologist</p>
-        <p className={css.price}>
-          Price: {price_per_hour ? price_per_hour.toFixed(2) : "N/A"}
-        </p>
-
-        <div className={css.ratingWrap}>
-          <StarFill className={css.starIcon} size={16} />
-          <p>
-            Rating: {rating} ({reviews.length})
-          </p>
+      <div className={css.sectionsWrap}>
+      <div className={css.infoWrap}>
+        <div className={css.nameWrap}>
+          <p className={css.role}>Psychologist</p>
+          <h2 className={css.name}>{name}</h2>
         </div>
 
-        <button className={css.isFavoriteBtn} onClick={handleFavoriteToggle}>
-          <SuitHeart
-            className={isFavorite ? css.isFavoriteIconRed : css.isFavoriteIcon}
-            size={24}
-          />
+        <div className={css.priceRatingWrap}>
+          <StarFill className={css.starIcon} size={16} />
+          <p>Rating: {rating}</p>
+
+          <p className={css.price}>
+            Price / 1 hour:
+            <span className={css.green}>
+              {" "}
+              {price_per_hour ? price_per_hour.toFixed(2) : "N/A"}$
+            </span>
+          </p>
+
+          <button className={css.isFavoriteBtn} onClick={handleFavoriteToggle}>
+            <SuitHeart
+              className={
+                isFavorite ? css.isFavoriteIconRed : css.isFavoriteIcon
+              }
+              size={26} style={{ fill: isFavorite ? "#fc832c" : "#191a15" }} 
+            />
+          </button>
+        </div>
+
+      </div>
+
+      <div className={css.jobWrap}>
+      <p className={css.jobWrapItem}><span className={css.grey}>Experience:</span> {experience}</p>
+      <p className={css.jobWrapItem}><span className={css.grey}>License:</span> {license}</p>
+      <p className={css.jobWrapItem}><span className={css.grey}>Specialization:</span> {specialization}</p>
+      <p className={css.jobWrapItem}><span className={css.grey}>Initial consultation:</span> {initial_consultation}</p>
+      </div>
+
+
+      <p className={css.about}>{about}</p>
+      {!isExpanded && (
+        <button className={css.readMoreBtn} onClick={toggleReadMore}>
+          Read More
         </button>
-
-        <h2 className={css.name}>{name}</h2>
-        <p>Experience: {experience}</p>
-        <p>License: {license}</p>
-        <p>Specialization: {specialization}</p>
-        <p>Initial consultation: {initial_consultation}</p>
-        <p className={css.about}>{about}</p>
-      </div>
-      </div>
-
-      {!isExpanded && <button className={css.readMoreBtn} onClick={toggleReadMore}>Read More</button>}
+      )}
       {isExpanded && (
         <>
           {reviews && reviews.length > 0 ? (
@@ -122,6 +137,7 @@ export default function PsychologistsCard({ psychologist }) {
           </Modal>
         </>
       )}
+    </div>
     </div>
   );
 }
