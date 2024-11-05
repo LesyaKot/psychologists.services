@@ -10,7 +10,7 @@
   padding: 20px;
 }
 
-.sectionsWrap{
+.sectionsWrap {
   margin-left: 32px;
   margin-right: 32px;
 }
@@ -20,7 +20,6 @@
   align-items: start;
   text-align: left;
   justify-content: space-between;
- 
 }
 
 .avatar {
@@ -56,15 +55,14 @@
 }
 
 .offline {
-  background-color:#8A8A89;
+  background-color: #8a8a89;
 }
-
 
 .readMoreBtn {
   text-align: left;
   background-color: transparent;
   border: none;
-  color:#191A15;
+  color: #191a15;
   cursor: pointer;
   font-size: 16px;
   margin-top: 14px;
@@ -75,21 +73,21 @@
   transition: all 0.3s linear;
   &:hover {
     text-decoration: none;
-    color: #8A8A89;
+    color: #8a8a89;
   }
 }
 
 .role {
   font-size: 16px;
   font-weight: 500;
-  color: #8A8A89;
- 
+  color: #8a8a89;
 }
 
-.nameWrap{
+.nameWrap {
   display: flex;
   flex-direction: column;
 }
+
 .name {
   font-size: 24px;
   font-weight: 500;
@@ -126,19 +124,19 @@
   margin-left: 24px;
   background-color: transparent;
   border: none;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
 .isFavoriteIcon {
   color: #191a15;
-  fill: #191a15; 
+  fill: #191a15;
 }
 
 .isFavoriteIconRed {
   color: #fc832c;
-  fill: #fc832c; 
+  fill: #fc832c;
 }
-.jobWrap{
+.jobWrap {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -146,14 +144,31 @@
   margin-bottom: 24px;
 }
 
-.jobWrapItem{
+.jobWrapItem {
   padding: 8px 16px;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   gap: 10px;
   border-radius: 24px;
-
 }
 
-.grey{
-  color: #8A8A89;
+.grey {
+  color: #8a8a89;
+}
+
+.about{
+  margin-bottom: 48px;
+  color: #191A1580; 
+  line-height: 20px;
+  font-size: 16px;
+}
+.appointmentBtn {
+  margin-top: 40px;
+  background-color: #FC832C;
+  color: #fff;
+  width: 227px;
+  height: 48px;
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+  
 }
