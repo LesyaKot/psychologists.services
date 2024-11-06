@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Clock } from "react-bootstrap-icons";
-import css from './Time.module.css'
+import css from './Time.module.css';
 
-
-export default function Time ({ name, value, onChange })  {
+export default function Time({ name, value, onChange }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedTime, setSelectedTime] = useState(value);
   const dropdownRef = useRef(null);
@@ -36,26 +35,31 @@ export default function Time ({ name, value, onChange })  {
   return (
     <div>
       <div ref={dropdownRef}>
-        <button onClick={() => setShowDropdown(!showDropdown)}>
+        <button className={css.inputTime} onClick={() => setShowDropdown(!showDropdown)}>
           {selectedTime || (
-            <>
-              {" "}
+            <div className={css.list}>
               {" 00:00"}
               <Clock className={css.clockIcon} size={16} />
-            </>
+            </div>
           )}
         </button>
         {showDropdown && (
           <div>
-            <p>Meeting time</p>
-            {timeOptions.map((time, index) => (
-              <p key={index} onClick={() => handleTimeSelect(time)}>
-                {time}
-              </p>
-            ))}
+            <p className={css.text}>Meeting time</p>
+            <div className={css.dropdownList}>
+              {timeOptions.map((time, index) => (
+                <p
+                  key={index}
+                  className={time === selectedTime ? css.selectedTime : css.unselectedTime}
+                  onClick={() => handleTimeSelect(time)}
+                >
+                  {time}
+                </p>
+              ))}
+            </div>
           </div>
         )}
       </div>
     </div>
   );
-};
+}

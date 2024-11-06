@@ -31,20 +31,24 @@ export default function Appointment({ psychologist }) {
   });
 
   return (
-    <>
-      <h1>Make an appointment with a psychologists</h1>
-      <p>
+    <div className={css.wrap}>
+      <h1 className={css.title}>Make an appointment with a psychologists</h1>
+      <p className={css.text}>
         You are on the verge of changing your life for the better. Fill out the
         short form below to book your personal appointment with a professional
         psychologist. We guarantee confidentiality and respect for your privacy.
       </p>
-      <img src={psychologist.avatar_url} alt={psychologist.name} />
-      <p>Your psychologists</p>
-      <p>{psychologist.name}</p>
-
+      <div className={css.imgWrap}>
+      <img className={css.img} src={psychologist.avatar_url} alt={psychologist.name} />
+      <div className={css.textWrap}>
+      <p className={css.textWrapTitle}>Your psychologists</p>
+      <p className={css.textWrapName}>{psychologist.name}</p>
+      </div>
+      </div>
       <div>
+
         <form onSubmit={formik.handleSubmit}>
-          <input
+          <input className={css.inputName}
             type="text"
             placeholder="Name"
             name="name"
@@ -56,8 +60,8 @@ export default function Appointment({ psychologist }) {
             <div>{formik.errors.name}</div>
           ) : null}
 
-          <div>
-            <input
+          <div className={css.phoneTimeWrap}>
+            <input className={css.inputPhone}
               placeholder="+380"
               name="phone"
               value={formik.values.phone}
@@ -77,7 +81,7 @@ export default function Appointment({ psychologist }) {
             ) : null}
           </div>
 
-          <input
+          <input className={css.inputEmail}
             type="email"
             placeholder="Email"
             name="email"
@@ -89,7 +93,7 @@ export default function Appointment({ psychologist }) {
             <div>{formik.errors.email}</div>
           ) : null}
 
-          <input
+          <input className={css.inputComment}
             rows="4"
             placeholder="Comment"
             name="comment"
@@ -97,11 +101,11 @@ export default function Appointment({ psychologist }) {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          <button type="submit"  disabled={formik.isSubmitting}>
+          <button className={css.btn} type="submit"  disabled={formik.isSubmitting}>
             Send
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }

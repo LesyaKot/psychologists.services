@@ -1,0 +1,97 @@
+.wrap {
+  padding: 64px;
+  width: 600px;
+}
+
+.title {
+  font-size: 40px;
+  line-height: 48px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  width: 472px;
+}
+
+.text {
+  margin-bottom: 40px;
+  color: #8a8a89;
+}
+
+.img {
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+}
+.imgWrap {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+}
+
+.textWrapTitle {
+  color: #8a8a89;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.textWrapName {
+  color: #191a15;
+  font-size: 16px;
+}
+
+.inputName {
+  width: 472px;
+  height: 52px;
+  padding: 16px 18px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  color: #191a15;
+}
+
+.phoneTimeWrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.inputPhone {
+  width: 232px;
+  height: 52px;
+  padding: 16px 18px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  color: #191a15;
+}
+
+.inputEmail {
+  width: 472px;
+  height: 52px;
+  padding: 16px 18px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  color: #191a15;
+}
+
+.inputComment {
+  width: 472px;
+  height: 116px;
+  padding: 16px 18px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  color: #191a15;
+}
+.btn {
+  margin-top: 40px;
+  background-color: #fc832c;
+  color: #fff;
+  width: 472px;
+  height: 52px;
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+}
