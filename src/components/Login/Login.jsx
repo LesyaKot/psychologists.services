@@ -60,24 +60,30 @@ export default function Login() {
       </p>
 
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-        <label className={css.label}>Email</label>
-        <input className={css.input} type="email" {...register("email")} />
-        {errors.email && <p>{errors.email.message}</p>}
-
-        <div className={css.passwordContainer}>
-          <label className={css.label}>Password</label>
+        <div className={css.inputWrap}>
           <input
+            placeholder="Email"
             className={css.input}
-            type={showPassword ? "text" : "password"}
-            {...register("password")}
+            type="email"
+            {...register("email")}
           />
-          <img
-            className={css.eyeIcon}
-            src={showPassword ? eyeIcon : eyeOffIcon}
-            alt="Toggle visibility"
-            onClick={togglePasswordVisibility}
-          />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.email && <p>{errors.email.message}</p>}
+
+          <div className={css.passwordContainer}>
+            <input
+              placeholder="Password"
+              className={css.input}
+              type={showPassword ? "text" : "password"}
+              {...register("password")}
+            />
+            <img
+              className={css.eyeIcon}
+              src={showPassword ? eyeIcon : eyeOffIcon}
+              alt="Toggle visibility"
+              onClick={togglePasswordVisibility}
+            />
+            {errors.password && <p>{errors.password.message}</p>}
+          </div>
         </div>
 
         <button className={css.btn} type="submit">

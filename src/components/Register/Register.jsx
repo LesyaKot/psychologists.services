@@ -98,41 +98,42 @@ export default function Register() {
         <div className={css.formSection}>
           <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
             <h2 className={css.title}>Registration</h2>
+            <p className={css.text}>
+              Thank you for your interest in our platform! In order to register,
+              we need some information. Please provide us with the following
+              information.
+            </p>
 
             <div className={css.inputWrap}>
-              <label className={css.label}>Name</label>
               <input
+                placeholder="Name"
                 type="text"
-                placeholder="Enter your name"
-                {...register("name")}
-                className={`${css.inputField} ${errors.name ? css.errorInput : ""}`}
+                className={`${css.inputField} ${
+                  errors.name ? css.errorInput : ""
+                }`}
               />
               {errors.name && (
                 <p className={css.errorText}>{errors.name.message}</p>
               )}
-            </div>
 
-            <div className={css.inputWrap}>
-              <label className={css.label}>Email</label>
               <input
+                placeholder="Email"
                 type="email"
-                placeholder="Enter your email"
-                {...register("email")}
-                className={`${css.inputField} ${errors.email ? css.errorInput : ""}`}
+                className={`${css.inputField} ${
+                  errors.email ? css.errorInput : ""
+                }`}
               />
               {errors.email && (
                 <p className={css.errorText}>{errors.email.message}</p>
               )}
-            </div>
 
-            <div className={css.inputWrap}>
-              <label className={css.label}>Password</label>
               <div className={css.inputContainer}>
                 <input
+                  placeholder="Password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
-                  {...register("password")}
-                  className={`${css.inputField} ${errors.password ? css.errorInput : ""}`}
+                  className={`${css.inputField} ${
+                    errors.password ? css.errorInput : ""
+                  }`}
                 />
                 <img
                   className={css.eyeIcon}
@@ -144,16 +145,14 @@ export default function Register() {
               {errors.password && (
                 <p className={css.errorText}>{errors.password.message}</p>
               )}
-            </div>
 
-            <div className={css.inputWrap}>
-              <label className={css.label}>Confirm Password</label>
               <div className={css.inputContainer}>
                 <input
+                  placeholder="Confirm Password"
                   type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirm your password"
-                  {...register("confirmPassword")}
-                  className={`${css.inputField} ${errors.confirmPassword ? css.errorInput : ""}`}
+                  className={`${css.inputField} ${
+                    errors.confirmPassword ? css.errorInput : ""
+                  }`}
                 />
                 <img
                   className={css.eyeIcon}
@@ -163,7 +162,9 @@ export default function Register() {
                 />
               </div>
               {errors.confirmPassword && (
-                <p className={css.errorText}>{errors.confirmPassword.message}</p>
+                <p className={css.errorText}>
+                  {errors.confirmPassword.message}
+                </p>
               )}
             </div>
 
@@ -172,7 +173,7 @@ export default function Register() {
               className={css.btn}
               type="submit"
             >
-              Sign in
+              Sign up
             </button>
 
             <div className={css.signInPrompt}>
