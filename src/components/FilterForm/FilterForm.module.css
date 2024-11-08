@@ -1,8 +1,6 @@
-.filterDropdown {
-  /* color: #8a8a89; */
-}
-
 .filterWrapper {
+  position: relative; 
+  width: 226px;
   text-align: left;
 }
 
@@ -14,14 +12,14 @@
 
 .filterBtn {
   background-color: #fc832c;
-  font-weight: 16px;
+  font-size: 16px;
   color: #fff;
   border: none;
   border-radius: 14px;
   width: 226px;
   height: 48px;
   padding: 16px 18px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   text-align: left;
   display: flex;
   flex-direction: row;
@@ -29,18 +27,36 @@
   align-items: center;
 }
 
+.filterBtn:hover {
+  background-color: #f37113;
+}
+
 .chevronIcon {
   width: 20px;
   height: 20px;
 }
 
+.filterDropdown {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10; 
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
 .filterOption {
   color: #8a8a89;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 10px 15px;
 }
 
 .filterOption:hover {
+  background-color: #f0f0f0;
   color: #000;
 }
 

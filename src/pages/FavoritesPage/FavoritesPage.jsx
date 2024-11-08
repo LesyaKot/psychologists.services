@@ -48,7 +48,7 @@ export default function FavoritesPage() {
   };
 
   return (
-    <div>
+    <div className={css.wrap}>
       <FilterForm onFilter={handleFilter} />
       {favoritePsychologists.length === 0 ? (
         <p>No psychologists available to display.</p>

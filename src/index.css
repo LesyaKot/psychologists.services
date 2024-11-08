@@ -1,4 +1,4 @@
-body {  
+body {
   margin: 0, auto;
   min-width: 320px;
   min-height: 100vh;
@@ -7,8 +7,11 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  /* background-color: #C8C1C1;  */
-  background-color: #FBFBFB;
+  background: linear-gradient(
+    135deg,
+    #fbfbfb 20%,
+    rgba(252, 131, 44, 0.1) 100%
+  );
 }
 
 h1,

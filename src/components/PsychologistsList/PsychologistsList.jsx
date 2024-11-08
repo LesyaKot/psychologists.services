@@ -113,15 +113,15 @@ export default function PsychologistsList() {
   }
 
   return (
-    <>
-      <FilterForm onFilter={handleFilter} />
+    <div className={css.container}>
+      <FilterForm className={css.filter} onFilter={handleFilter} />
       <div className={css.wrap}>
         <ul className={css.list}>
           {filteredPsychologists
             .slice(0, visiblePsychologists)
             .map((psychologist) => (
               <li key={psychologist.name}>
-                <PsychologistsCard
+                <PsychologistsCard className={css.psychologist}
                   psychologist={psychologist}
                   isFavorite={favoritePsychologists.some(
                     (fav) => fav.name === psychologist.name
@@ -136,7 +136,10 @@ export default function PsychologistsList() {
         )}
         {error && <p>Error loading psychologists: {error}</p>}
       </div>
-    </>
+    </div>
   );
+  
+  
+  
 }
 
