@@ -1,5 +1,5 @@
 body {
-  margin: 0, auto;
+  margin: 0;
   min-width: 320px;
   min-height: 100vh;
   align-content: center;
@@ -12,6 +12,8 @@ body {
     #fbfbfb 20%,
     rgba(252, 131, 44, 0.1) 100%
   );
+  padding: 0;  
+  box-sizing: border-box;
 }
 
 h1,
