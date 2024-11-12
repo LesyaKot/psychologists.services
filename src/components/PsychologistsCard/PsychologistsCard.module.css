@@ -184,3 +184,120 @@
 .appointmentBtn:hover {
   background-color: #f37113;
 }
+
+
+@media (max-width: 768px) {
+  .wrap {
+    flex-direction: column; 
+    width: 100%; 
+    gap: 16px; 
+    padding: 15px;
+  }
+
+  .imgWrap {
+    width: 100px;
+    height: 100px;
+    padding: 8px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .infoWrap {
+    flex-direction: column; 
+    align-items: flex-start;
+  }
+
+  .priceRatingWrap {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 14px;
+  }
+
+  .isFavoriteBtn {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .jobWrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .about {
+    font-size: 14px;
+  }
+
+  .readMoreBtn {
+    font-size: 14px;
+  }
+
+  .appointmentBtn {
+    width: 100%;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .wrap {
+    width: 90%; 
+    padding: 20px;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .priceRatingWrap {
+    font-size: 14px;
+  }
+
+  .jobWrap {
+    flex-direction: column;
+  }
+
+  .about {
+    font-size: 15px;
+  }
+
+  .appointmentBtn {
+    width: 100%;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .wrap {
+    flex-direction: row;
+    width: 1180px;
+  }
+
+  .imgWrap {
+    width: 120px;
+    height: 120px;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .priceRatingWrap {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .readMoreBtn {
+    font-size: 16px;
+  }
+
+  .appointmentBtn {
+    width: 227px;
+  }
+}
